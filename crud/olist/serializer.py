@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from olist.models import Category, Product
+from olist.models import Category, Product, Csv
 
 # Serializer Category
 class CategorySerializer(serializers.ModelSerializer):
@@ -9,6 +9,10 @@ class CategorySerializer(serializers.ModelSerializer):
         'name': string
     }
     '''
+
+    def to_representation(self, value):
+        return value.name
+
     class Meta:
         model = Category
         fields = ['id', 'name']
@@ -24,6 +28,14 @@ class ProductSerializer(serializers.ModelSerializer):
     }
     '''
 
+    category = CategorySerializer(read_only=False, many=True)
+
     class Meta:
         model = Product
         fields = ['id', 'name', 'value', 'category']
+
+class CsvSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Csv
+        fields = ['csvFile']

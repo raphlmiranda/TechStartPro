@@ -10,28 +10,29 @@ import csv
 class djangoCsv():
 
     def __init__(self):
-        self.csvName = os.listdir('.\\files\\')
+        self.dir = '.\\files\\'
+        self.csvName = os.listdir(self.dir)
 
-    def getCsvName(self):
+    def getCsvName(self) -> str:
         '''
         Get from 'files' path name CSV
         '''
         files = self.csvName[0].split('.csv')
         return files[0]
     
-    def deleteFile(self):
+    def deleteFile(self) -> None:
         '''
         Delete CSV file after read
         '''
-        if os.path.exists(f'.\\files\\{self.getCsvName()}.csv'):
-            os.remove(f'.\\files\\{self.getCsvName()}.csv')
+        if os.path.exists(f'{self.dir}{self.getCsvName()}.csv'):
+            os.remove(f'{self.dir}{self.getCsvName()}.csv')
 
 
-    def readCsv(self):
+    def readCsv(self) -> None:
         '''
         Read CSV File in 'files' path
         '''
-        df = pd.read_csv(f'.\\files\\{self.getCsvName()}.csv')
+        df = pd.read_csv(f'{self.dir}{self.getCsvName()}.csv')
         # print(df.columns)
         for i in range(len(df)):
             c = Category(name=df['nome'][i])

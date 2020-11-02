@@ -1,7 +1,6 @@
 from django.contrib import admin
 from olist.models import Category, Product, Csv
 from olist.djangoCsv import djangoCsv
-import time
 
 
 class Categorys(admin.ModelAdmin):

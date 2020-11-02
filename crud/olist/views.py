@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from olist.serializer import CategorySerializer, ProductSerializer
-from olist.models import Category, Product
+from olist.serializer import CategorySerializer, ProductSerializer, CsvSerializer
+from olist.models import Category, Product, Csv
 
 
 # Category API VIEW
@@ -14,3 +14,8 @@ class ProductViewSet(viewsets.ModelViewSet):
 
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+class CsvViewSet(viewsets.ModelViewSet):
+
+    queryset = Csv.objects.all()
+    serializer_class = CsvSerializer
